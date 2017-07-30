@@ -1,0 +1,12 @@
+- name: set up Remi repo
+  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-7.rpm state=present
+
+- name: install php-cli
+  yum: name=php-cli enablerepo=remi-php54
+
+- name: install php-fpm
+  yum: name=php-fpm enablerepo=remi-php54
+
+- name: install PHP modules
+  yum: name={{ item }} enablerepo=remi-php54
+  with_items: "{{ php_modules }}"
