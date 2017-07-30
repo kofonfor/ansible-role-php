@@ -10,3 +10,12 @@
 - name: install PHP modules
   yum: name={{ item }} enablerepo=remi-php54
   with_items: "{{ php_modules }}"
+
+- name: put php.ini
+  template: src=php.ini dest=/etc/php.ini backup=yes
+
+- name: put /etc/php-fpm.conf
+  template: src=php-fpm.conf dest=/etc/php-fpm.conf backup=yes
+
+- name: put /etc/php-fpm.d/www.conf
+  template: src=www.conf dest=/etc/php-fpm.d/www.conf backup=yes
